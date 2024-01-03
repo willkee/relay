@@ -887,11 +887,6 @@ button:focus-visible {
   }
 }
 
-.hover\:bg-\[\#4B56D0\]:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(75 86 208 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-discord-button-hover:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(75 86 208 / var(--tw-bg-opacity));
