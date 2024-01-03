@@ -9,7 +9,6 @@ const setUser = (user) => ({ type: SET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 
 // thunks
-
 export const login = (email, password) => async (dispatch) => {
 	console.log(email, password, "redux");
 	const res = await csrfFetch("/api/session", {
