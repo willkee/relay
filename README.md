@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./frontend/public/images/logo_white.svg" style="height:300px;" />
+<img src="./frontend/src/assets/images/logo_white.svg" style="height:300px;" />
 </p>
 
 <h1 align="center">Relay</h1>
