@@ -20,7 +20,7 @@ Relay is a Discord Clone built with React and Redux. It is a real-time chat appl
 
 -   [&check;] Create a logo using Canva/Figma.
 
-<img src="./frontend/public/favicon.svg" style="height:300px;padding-left:30px" />
+<img src="./frontend/public/logo.svg" style="height:300px;padding-left:30px" />
 
 <br/>
 
