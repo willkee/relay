@@ -1,0 +1,17 @@
+{
+  "providers": [
+    "awscloudformation"
+  ],
+  "projectName": "relay",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir": "/frontend/src",
+      "DistributionDir": "/frontend/dist",
+      "BuildCommand": "npm run --prefix frontend build",
+      "StartCommand": "npm run --prefix frontend dev"
+    }
+  }
+}
