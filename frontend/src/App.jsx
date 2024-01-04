@@ -1,5 +1,5 @@
 import FormLabel from "./components/FormLabel";
-
+import header from "./assets/images/header.svg";
 function App() {
 	// buttons , 14% black opacity hover
 
@@ -7,9 +7,17 @@ function App() {
 		e.preventDefault();
 	};
 	return (
-		<div className="bg-welcome w-[100vw] h-full min-w-screen min-h-screen bg-cover bg-center font-sans flex justify-center items-center">
-			<div className="bg-primary w-[480px] text-white rounded-md shadow-md">
-				<form onSubmit={handleSubmit} className="p-8">
+		<div className="mobile:bg-primary sm:bg-welcome w-[100vw] h-full min-w-screen min-h-screen bg-cover bg-center font-sans flex justify-center sm:items-center">
+			<div className="bg-primary mobile:w-full sm:w-[480px] text-white sm:rounded-md sm:shadow-md">
+				<header className="flex justify-center items-center sm:hidden">
+					<img
+						src={header}
+						alt="header"
+						width="180px"
+						className="pl-2 mt-5 -mb-3 sm:hidden"
+					/>
+				</header>
+				<form onSubmit={handleSubmit} className="p-8 mobile:w-full">
 					<section className="flex justify-center items-center flex-col">
 						<h1 className="font-ggBold text-2xl text-discord-text-100">
 							Welcome back!
@@ -30,13 +38,21 @@ function App() {
 							type="text"
 							className="bg-discord-input-dark p-2.5 outline-none text-base h-[40px]"
 						/>
-						<p className="font-ggMedium text-discord-link-text text-sm pt-1">
+						<p className="font-ggMedium text-discord-link-text text-sm pt-1 cursor-pointer hover:underline">
 							Forgot your password?
 						</p>
 					</section>
 					<button className="mt-5 font-ggMedium bg-discord-button w-full rounded-sm outline-none border-none focus:outline-none hover:bg-discord-button-hover">
 						Log In
 					</button>
+					<div className="font-ggMedium mt-2 text-sm">
+						<span className="text-discord-text-300">
+							Need an account?
+						</span>
+						<span className="text-discord-link-text ml-1 cursor-pointer hover:underline">
+							Register
+						</span>
+					</div>
 				</form>
 			</div>
 		</div>
