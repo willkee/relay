@@ -33,8 +33,12 @@ Relay is a Discord Clone built with React and Redux. It is a real-time chat appl
 -   [&check;] Style the sign in form to match the Discord sign in page, but with a different background.
 -   [&check;] Ensure responsiveness to mobile layouts for sign in page.
 
+<p style="flex">
+
 <img src="./frontend/public/images/login_screen.png" style="height:300px;padding-left:30px" />
 <img src="./frontend/public/images/login_screen_mobile.png" style="height:300px;padding-left:10px" />
+
+</p>
 
 -   [&nbsp;&nbsp;&nbsp;] Research pop-out transition between sign in and sign up forms.
 -   [&nbsp;&nbsp;&nbsp;] Learn the use of web sockets for real-time chat communication (socket.io library)
