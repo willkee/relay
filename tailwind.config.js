@@ -28,6 +28,7 @@ export default {
 				"discord-text-300": "#949BA4",
 				"discord-red": "#F23F42",
 			},
+			// buttons , 14% black opacity hover
 			backgroundImage: {
 				welcome: "url('/src/assets/images/welcome-background.jpg')",
 			},
