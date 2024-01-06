@@ -19,11 +19,11 @@ export const login = (email, password) => async (dispatch) => {
 	await dispatch(setUser(data.user));
 };
 
-export const restoreUser = () => async (dispatch) => {
-	const res = await csrfFetch("/api/session");
-	const data = await res.json();
-	await dispatch(setUser(data.user));
-};
+// export const restoreUser = () => async (dispatch) => {
+// 	const res = await csrfFetch("/api/session");
+// 	const data = await res.json();
+// 	await dispatch(setUser(data.user));
+// };
 
 export const logout = () => async (dispatch) => {
 	await csrfFetch("/api/session", { method: "DELETE" });
