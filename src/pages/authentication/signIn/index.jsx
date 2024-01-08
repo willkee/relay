@@ -1,11 +1,9 @@
 import header from "../../../assets/images/header.svg";
 import FormLabel from "../../../components/FormLabel";
 
-// import * as auth from "aws-amplify/auth";
 const SignIn = ({ setUserExists }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// console.log(auth, "auth");
 	};
 
 	return (
