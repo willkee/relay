@@ -3,10 +3,12 @@ import { csrfFetch } from "./csrf";
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const CREATE_USER = "session/CREATE_USER";
 
 // action creators
 const setUser = (user) => ({ type: SET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
+const createUser = (user) => ({ type: CREATE_USER, user });
 
 // thunks
 export const login = (email, password) => async (dispatch) => {
@@ -17,6 +19,18 @@ export const login = (email, password) => async (dispatch) => {
 	});
 	const data = await res.json();
 	await dispatch(setUser(data.user));
+};
+
+export const signUp = (data) => async (dispatch) => {
+	const { email, displayName, username, password, dob } = data;
+	console.log(email, displayName, username, password, dob, "redux");
+
+	// const res = await csrfFetch("/api/session", {
+	// 	method: "POST",
+	// 	body: JSON.stringify({ email, password }),
+	// });
+	// const data = await res.json();
+	// await dispatch(createUser(data.user));
 };
 
 // export const restoreUser = () => async (dispatch) => {

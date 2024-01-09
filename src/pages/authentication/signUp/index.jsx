@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Select from "react-select";
 import header from "../../../assets/images/header.svg";
 import FormLabel from "../../../components/FormLabel";
@@ -7,7 +8,17 @@ import Spacer from "../../../components/Spacer";
 import { tw } from "./tailwindClasses";
 import options from "./options";
 
-import ValidateEmail from "../../../utils/ValidateEmail";
+import {
+	ValidateEmail,
+	ValidatePassword,
+	ValidateUsername,
+	ValidateAge,
+} from "../../../utils/InputValidation";
+import SelectProps from "./props";
+
+import OnFocusMessage from "../../../components/OnFocusMessage";
+
+import { signUp } from "../../../store/session";
 
 const SignUp = ({ setUserExists }) => {
 	const [email, setEmail] = useState("");
@@ -15,18 +26,42 @@ const SignUp = ({ setUserExists }) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [dob, setDOB] = useState({ month: "", day: "", year: "" });
-
 	const [currentFocus, setCurrentFocus] = useState("");
+
+	const dispatch = useDispatch();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		const isValidEmail = ValidateEmail(email);
-		console.log("Email: ", email, "valid: ", isValidEmail);
-		console.log("Display Name: ", displayName);
-		console.log("Username: ", username);
-		console.log("Password", password);
-		console.log("DOB: ", dob);
+		const isValidPassword = ValidatePassword(password);
+		const isValidUsername = ValidateUsername(username);
+		const isValidAge = ValidateAge(dob);
+
+		try {
+			if (!isValidEmail) throw new Error("Invalid email address.");
+			if (!username) {
+				throw new Error("Please enter a username.");
+			}
+			if (!isValidPassword)
+				throw new Error(
+					"Password must be 8+ characters, mix of upper/lowercase, and at least 1 number."
+				);
+			if (!isValidUsername)
+				throw new Error(
+					"Please only use numbers, letters, underscores _ , or periods."
+				);
+			if (!isValidAge)
+				throw new Error(
+					"You must be 13 years of age or older to register."
+				);
+
+			const data = { email, displayName, username, password, dob };
+			const res = dispatch(signUp(data));
+			console.log(res, "res from dispatch - sign up");
+		} catch (err) {
+			alert(err.message);
+		}
 	};
 
 	useEffect(() => {
@@ -38,36 +73,6 @@ const SignUp = ({ setUserExists }) => {
 			setDOB({ month: "", day: "", year: "" });
 		};
 	}, []);
-
-	const SelectProps = {
-		isClearable: false,
-		className: "w-full ml-3",
-		components: { IndicatorSeparator: () => null },
-		styles: {
-			control: (styles) => ({
-				...styles,
-				backgroundColor: "#1E1F22",
-				border: "none",
-				color: "#FFF",
-			}),
-			option: (styles, { isDisabled, isFocused }) => {
-				return {
-					...styles,
-					backgroundColor: isFocused ? "#424549" : "#1E1F22",
-					color: isDisabled ? "#555" : "#FFF",
-					cursor: isDisabled ? "not-allowed" : "default",
-				};
-			},
-			singleValue: (styles) => ({
-				...styles,
-				color: "#FFF",
-			}),
-			menu: (styles) => ({
-				...styles,
-				backgroundColor: "#1E1F22",
-			}),
-		},
-	};
 
 	return (
 		<div className="bg-primary mobile:w-full sm:w-[480px] text-white sm:rounded-md sm:shadow-md">
@@ -98,18 +103,11 @@ const SignUp = ({ setUserExists }) => {
 						onChange={(e) => setDisplayName(e.target.value)}
 						onFocus={() => setCurrentFocus("display_name")}
 					/>
-					<div className="relative">
-						<p
-							className={`text-sm pt-0.5 opacity-0 transition-opacity duration-300 ${
-								currentFocus === "display_name"
-									? "opacity-100"
-									: "absolute"
-							}`}
-						>
-							This is how others see you. You can use special
-							characters. (Optional)
-						</p>
-					</div>
+					<OnFocusMessage
+						currentFocus={currentFocus}
+						target="display_name"
+						message="This is how others see you. You can use special characters. (Optional)"
+					/>
 					<Spacer />
 					<FormLabel name="USERNAME" required />
 					<input
@@ -118,18 +116,12 @@ const SignUp = ({ setUserExists }) => {
 						onFocus={() => setCurrentFocus("username")}
 						onChange={(e) => setUsername(e.target.value)}
 					/>
-					<div className="relative">
-						<p
-							className={`text-sm pt-0.5 opacity-0 transition-opacity duration-300 ${
-								currentFocus === "username"
-									? "opacity-100"
-									: "absolute"
-							}`}
-						>
-							Please only use numbers, letters, underscores _ , or
-							periods.
-						</p>
-					</div>
+					<OnFocusMessage
+						currentFocus={currentFocus}
+						target="username"
+						message="Please only use numbers, letters, underscores _ , or
+							periods."
+					/>
 					<Spacer />
 					<FormLabel name="PASSWORD" required />
 					<input
@@ -139,18 +131,11 @@ const SignUp = ({ setUserExists }) => {
 						onChange={(e) => setPassword(e.target.value)}
 						onFocus={() => setCurrentFocus("password")}
 					/>
-					<div className="relative">
-						<p
-							className={`text-sm pt-0.5 opacity-0 transition-opacity duration-300 ${
-								currentFocus === "password"
-									? "opacity-100"
-									: "absolute"
-							}`}
-						>
-							8+ characters, mix of upper/lowercase, and at least
-							1 number.
-						</p>
-					</div>
+					<OnFocusMessage
+						currentFocus={currentFocus}
+						target="password"
+						message="8+ characters, mix of upper/lowercase, and at least 1 number."
+					/>
 					<Spacer />
 					<FormLabel name="DATE OF BIRTH" required />
 					<section className="flex pt-1 justify-between">
