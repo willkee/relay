@@ -57,6 +57,7 @@ const SignUp = ({ setUserExists }) => {
 				);
 
 			const data = { email, displayName, username, password, dob };
+
 			const res = dispatch(signUp(data));
 			console.log(res, "res from dispatch - sign up");
 		} catch (err) {
