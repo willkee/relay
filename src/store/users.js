@@ -1,27 +1,47 @@
-// import { csrfFetch } from "./csrf";
+import { csrfFetch } from "./csrf";
 
-// // constants
-// const GET_USERS = "session/GET_USERS";
+// constants
+const ADDED_FRIEND = "users/ADDED_FRIEND";
+const REMOVED_FRIEND = "users/REMOVED_FRIEND";
+const RETRIEVED_FRIENDS = "users/RETRIEVED_FRIENDS";
 
-// // action creators
-// const getUsers = () => ({ type: GET_USERS });
+// action creators
+const retrievedFriends = (data) => ({ type: RETRIEVED_FRIENDS, data });
+const addedFriend = (data) => ({ type: ADDED_FRIEND, data });
+const removedFriend = (data) => ({ type: REMOVED_FRIEND, data });
 
-// // thunks
-// // export const retrievedUsers = () => async (dispatch) => {
-// // };
+// thunks
+const urlPrefix = "/api/v1/users";
 
-// // reducer
+export const getFriends = () => async (dispatch) => {
+	await csrfFetch(`${urlPrefix}/friends`);
+	await dispatch(retrievedFriends());
+};
+export const addFriend = () => async (dispatch) => {
+	await csrfFetch(`${urlPrefix}/friends/add`);
+	await dispatch(addedFriend());
+};
+export const removeFriend = () => async (dispatch) => {
+	await csrfFetch(`${urlPrefix}/friends/remove`);
+	await dispatch(removedFriend());
+};
 
-// const usersReducer = (state = { user: null }, action) => {
-// 	const newState = { ...state };
-// 	switch (action.type) {
-// 		case GET_USERS: {
-// 			newState.user = action.user;
-// 			return newState;
-// 		}
-// 		default:
-// 			return state;
-// 	}
-// };
+// reducer
+const usersReducer = (state = { user: null }, action) => {
+	const newState = { ...state };
+	switch (action.type) {
+		case ADDED_FRIEND: {
+			return newState;
+		}
+		case REMOVED_FRIEND: {
+			return newState;
+		}
+		case RETRIEVED_FRIENDS: {
+			return newState;
+		}
+		default:
+			return state;
+	}
+};
 
-// export default usersReducer;
+export default usersReducer;
