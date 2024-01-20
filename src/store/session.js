@@ -40,8 +40,6 @@ export const login = (emailInput, password) => async (dispatch) => {
 export const signUp = (input) => async (dispatch) => {
 	const { email, displayName, username, password, dob, recaptcha } = input;
 
-	console.log(recaptcha, "recaptcha");
-
 	const res = await csrfFetch("/api/v1/auth/register", {
 		method: "POST",
 		body: JSON.stringify({
@@ -91,7 +89,6 @@ const sessionReducer = (state = { user: null }, action) => {
 		}
 		case REMOVE_USER: {
 			newState.user = null;
-			newState.activeSession = null;
 			return newState;
 		}
 		default:
