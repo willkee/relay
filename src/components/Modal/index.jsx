@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
-import "./Modal.css";
 
 import { hideModal } from "../../store/modal";
 
@@ -17,9 +16,12 @@ export const Modal = () => {
 		display &&
 		mount &&
 		ReactDOM.createPortal(
-			<div className="modal-background" onClick={closeModal}>
+			<div
+				className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-75 backdrop-blur flex justify-center items-center z-50"
+				onClick={closeModal}
+			>
 				<div
-					className="modal-content"
+					className="bg-transparent flex justify-center items-center shadow-inner overflow-hidden z-[101] mobile:w-full sm:w-[480px]"
 					onClick={(e) => e.stopPropagation()}
 				>
 					<CurrentComponent />
