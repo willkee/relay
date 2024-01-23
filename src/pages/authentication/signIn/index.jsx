@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 import { ValidateEmail } from "../../../utils/InputValidation";
 
+import { showModal, currentModal } from "../../../store/modal";
+import ForgotPassword from "./ForgotPassword";
+
 const SignIn = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -21,6 +24,11 @@ const SignIn = () => {
 		setDefaultErrors();
 		return () => setDefaultErrors();
 	}, []);
+
+	const handleForgotPassword = () => {
+		dispatch(currentModal(ForgotPassword));
+		dispatch(showModal());
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -114,7 +122,10 @@ const SignIn = () => {
 							{errors.pw}
 						</div>
 					)}
-					<p className="font-ggMedium text-discord-link-text text-sm pt-1 cursor-pointer hover:underline">
+					<p
+						className="font-ggMedium text-discord-link-text text-sm pt-1 cursor-pointer hover:underline"
+						onClick={handleForgotPassword}
+					>
 						Forgot your password?
 					</p>
 				</section>
