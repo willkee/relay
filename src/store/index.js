@@ -3,8 +3,9 @@ import logger from "redux-logger";
 import { thunk } from "redux-thunk";
 
 import sessionReducer from "./session";
+import modalReducer from "./modal";
 
-const reducer = { session: sessionReducer };
+const reducer = { session: sessionReducer, modal: modalReducer };
 const middleware = () => new Tuple(thunk, logger);
 
 const store = configureStore({ reducer, middleware });

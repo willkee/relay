@@ -8,6 +8,7 @@ import { removeUser, setUser } from "./store/session";
 import Authentication from "./pages/authentication";
 import MainPage from "./pages/main";
 
+import Modal from "./components/Modal";
 function App() {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
 
 	return (
 		<>
+			<Modal />
 			{!isLoaded ? (
 				<div>Loading...</div>
 			) : (
