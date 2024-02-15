@@ -39,7 +39,9 @@ function App() {
 		<>
 			<Modal />
 			{!isLoaded ? (
-				<div>Loading...</div>
+				<div className="mobile:bg-primary sm:bg-welcome w-[100vw] h-full min-w-screen min-h-screen bg-cover bg-center font-sans flex justify-center sm:items-center">
+					Loading...
+				</div>
 			) : (
 				<Routes>
 					<Route
