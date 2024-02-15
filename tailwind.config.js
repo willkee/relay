@@ -27,6 +27,10 @@ export default {
 				"discord-text-200": "#B5BAC1",
 				"discord-text-300": "#949BA4",
 				"discord-red": "#F23F42",
+				"discord-sidebar-2": "#2B2D31",
+				"discord-main-content-bg": "#313338",
+				"discord-divider": "#35363C",
+				"discord-profile": "#232428",
 			},
 			// buttons , 14% black opacity hover
 			backgroundImage: {

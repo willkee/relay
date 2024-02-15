@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
 
-import { hideModal } from "../../store/modal";
+import { hideModal, currentModal } from "../../store/modal";
 
 export const Modal = () => {
 	const dispatch = useDispatch();
@@ -10,7 +10,10 @@ export const Modal = () => {
 	const display = useSelector((state) => state.modal.display);
 	const CurrentComponent = useSelector((state) => state.modal.current);
 
-	const closeModal = () => dispatch(hideModal());
+	const closeModal = () => {
+		dispatch(hideModal());
+		dispatch(currentModal(null));
+	};
 
 	return (
 		display &&
