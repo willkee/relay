@@ -50,13 +50,6 @@ const MainPage = () => {
 				className="bg-discord-main-content-bg text-white flex-grow"
 			>
 				<div className="h-[48px] drop-shadow-sm border-b-[1px] border-discord-input-dark" />
-				<div>User is logged in. Page under construction.</div>
-				<button
-					onClick={() => dispatch(logout())}
-					className="bg-gray-200 h-10"
-				>
-					LOG OUT
-				</button>
 			</div>
 		</div>
 	);
