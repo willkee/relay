@@ -39,6 +39,9 @@ export default {
 			backgroundImage: {
 				welcome: "url('/src/assets/images/welcome-background.jpg')",
 			},
+			animation: {
+				wiggle: "wiggle 1s ease-in-out infinite",
+			},
 		},
 		screens: {
 			mobile: "0px",
