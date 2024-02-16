@@ -24,7 +24,7 @@ export const Modal = () => {
 				onClick={closeModal}
 			>
 				<div
-					className="bg-transparent flex justify-center items-center shadow-inner overflow-hidden z-[101] mobile:w-full sm:w-[480px]"
+					className="bg-transparent flex justify-center items-center shadow-inner overflow-hidden z-[101] w-fit"
 					onClick={(e) => e.stopPropagation()}
 				>
 					<CurrentComponent />
