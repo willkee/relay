@@ -3,6 +3,9 @@ import {
 	firebaseAuth,
 	signInWithEmailAndPassword,
 	signOut,
+	doc,
+	db,
+	getDoc,
 } from "../../Firebase";
 import Cookies from "js-cookie";
 
@@ -23,6 +26,10 @@ export const login = (emailInput, password) => async (dispatch) => {
 		password
 	);
 
+	const document = await getDoc(doc(db, "users", user.uid));
+	let username;
+	if (document.exists()) username = document.data().username;
+
 	const token = await user.getIdToken();
 	Cookies.set("id_token", token, { expires: 1 / 24 });
 
@@ -31,6 +38,7 @@ export const login = (emailInput, password) => async (dispatch) => {
 		email: user.email,
 		displayName: user.displayName,
 		phoneNumber: user.phoneNumber,
+		username,
 	};
 
 	await dispatch(setUser(data));
@@ -60,11 +68,18 @@ export const signUp = (input) => async (dispatch) => {
 		password
 	);
 
+	const document = await getDoc(doc(db, "users", user.uid));
+	let db_username;
+	if (document.exists()) {
+		db_username = document.data().username;
+	}
+
 	const data = {
 		uid: user.uid,
 		email: user.email,
 		displayName: user.displayName,
 		phoneNumber: user.phoneNumber,
+		username: db_username,
 	};
 
 	const token = await user.getIdToken();
