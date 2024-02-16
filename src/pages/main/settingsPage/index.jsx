@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { hideModal, currentModal } from "../../../store/modal";
 
 import MyAccountSettings from "./MyAccount";
@@ -8,9 +8,22 @@ import LogoutIcon from "../icons/Logout";
 import LogoutModal from "./LogoutModal";
 
 const SettingsPage = () => {
-	const dispatch = useDispatch();
-	const [active, setActive] = useState({ acct: true, logout: false });
+	const _default = {
+		acct: true,
+		logout: false,
+	};
+
+	const _inactive = {
+		acct: false,
+		logout: false,
+	};
+
+	const [active, setActive] = useState(_default);
 	const [showLogoutPrompt, setShowLogoutPrompt] = useState(false);
+	const dispatch = useDispatch();
+
+	const { user } = useSelector((state) => state.session);
+	console.log(user, "user");
 
 	const escFunction = useCallback((event) => {
 		if (event.key === "Escape") closeSettings();
@@ -34,7 +47,8 @@ const SettingsPage = () => {
 		active: "text-white bg-discord-settings-item",
 		inactive: "text-discord-text-200",
 		item: "text-base cursor-pointer py-2 px-2.5 hover:bg-discord-settings-item rounded flex items-center w-full h-8 mb-1",
-		item2: "text-base py-2 px-2.5 cursor-pointer hover:bg-discord-settings-item flex items-center justify-between rounded w-full h-8 mb-1",
+		item_icon:
+			"text-base py-2 px-2.5 cursor-pointer hover:bg-discord-settings-item flex items-center justify-between rounded w-full h-8 mb-1",
 	};
 
 	return (
@@ -46,11 +60,12 @@ const SettingsPage = () => {
 					className={`${tw.item} ${
 						active.acct ? tw.active : tw.inactive
 					}`}
+					onClick={() => setActive({ ..._inactive, acct: true })}
 				>
 					My Account
 				</div>
 				<div
-					className={`${tw.item2} ${
+					className={`${tw.item_icon} ${
 						active.logout ? tw.active : tw.inactive
 					}`}
 					onClick={() => setShowLogoutPrompt(true)}
