@@ -8,6 +8,8 @@ import { removeUser, setUser } from "./store/session";
 import Authentication from "./pages/authentication";
 import MainPage from "./pages/main";
 
+import icon from "./assets/images/logo.png";
+
 import Modal from "./components/Modal";
 function App() {
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -45,7 +47,16 @@ function App() {
 		<>
 			<Modal />
 			{!isLoaded ? (
-				<div className="mobile:bg-primary sm:bg-welcome w-[100vw] h-full min-w-screen min-h-screen bg-cover bg-center font-sans flex justify-center sm:items-center" />
+				<div className="bg-gradient-to-b from-primary to-discord-input-dark w-screen h-full min-w-screen min-h-screen flex flex-col justify-center items-center">
+					<img
+						className="w-20 h-20 animate-pulse"
+						src={icon}
+						alt="Relay logo"
+					/>
+					<div className="text-discord-text-200 font-ggBold mt-4 text-lg animate-pulse duration-300">
+						Loading...
+					</div>
+				</div>
 			) : (
 				<Routes>
 					<Route
