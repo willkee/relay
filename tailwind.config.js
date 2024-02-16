@@ -31,6 +31,7 @@ export default {
 				"discord-main-content-bg": "#313338",
 				"discord-divider": "#35363C",
 				"discord-profile": "#232428",
+				"discord-settings-item": "#3F4248",
 			},
 			// buttons , 14% black opacity hover
 			backgroundImage: {

@@ -1,9 +1,14 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 import logo from "../../assets/images/logo.png";
-import friends from "../../assets/images/friends.svg";
+
+import SettingsIcon from "./icons/Settings";
+import ListItems from "./listItem";
+
 const MainPage = () => {
 	const dispatch = useDispatch();
+	const { user } = useSelector((state) => state.session);
+
 	return (
 		<div className="flex h-screen w-screen min-h-full bg-gray-200">
 			<div className="w-[72px] bg-discord-input-dark h-full text-white p-3 flex flex-col items-center">
@@ -23,54 +28,20 @@ const MainPage = () => {
 					</div>
 				</div>
 				<div className="flex flex-col items-center pt-[8px]">
-					<div className="font-ggMedium text-discord-text-300 w-[221px] h-[42px] bg-[#4e505899] flex items-center pl-[8px] rounded-sm">
-						<svg
-							role="img"
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							fill="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								fill=""
-								d="M13 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
-								className=""
-							></path>
-							<path
-								fill=""
-								d="M3 5v-.75C3 3.56 3.56 3 4.25 3s1.24.56 1.33 1.25C6.12 8.65 9.46 12 13 12h1a8 8 0 0 1 8 8 2 2 0 0 1-2 2 .21.21 0 0 1-.2-.15 7.65 7.65 0 0 0-1.32-2.3c-.15-.2-.42-.06-.39.17l.25 2c.02.15-.1.28-.25.28H9a2 2 0 0 1-2-2v-2.22c0-1.57-.67-3.05-1.53-4.37A15.85 15.85 0 0 1 3 5Z"
-								className=""
-							></path>
-						</svg>
-						<span className="pl-3">Friends</span>
-					</div>
+					<ListItems />
 					<div className="absolute bottom-0 text-white h-[52px] bg-discord-profile w-[240px] flex items-center justify-between px-3">
 						<div className="flex items-center">
-							<div className="bg-black rounded-full w-[32px] h-[32px] mr-2" />
+							<div className="bg-green-900 rounded-full w-[32px] h-[32px] mr-2 flex items-center justify-center">
+								<img
+									className="rounded-full w-[75%] h-[75%]"
+									src={logo}
+								/>
+							</div>
 							<div className="font-ggMedium text-discord-text-200">
-								User
+								{user.displayName}
 							</div>
 						</div>
-						<div className="text-discord-text-200">
-							<svg
-								aria-hidden="true"
-								role="img"
-								xmlns="http://www.w3.org/2000/svg"
-								width="20"
-								height="20"
-								fill="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									fill="var(--interactive-normal)"
-									fillRule="evenodd"
-									d="M10.56 1.1c-.46.05-.7.53-.64.98.18 1.16-.19 2.2-.98 2.53-.8.33-1.79-.15-2.49-1.1-.27-.36-.78-.52-1.14-.24-.77.59-1.45 1.27-2.04 2.04-.28.36-.12.87.24 1.14.96.7 1.43 1.7 1.1 2.49-.33.8-1.37 1.16-2.53.98-.45-.07-.93.18-.99.64a11.1 11.1 0 0 0 0 2.88c.06.46.54.7.99.64 1.16-.18 2.2.19 2.53.98.33.8-.14 1.79-1.1 2.49-.36.27-.52.78-.24 1.14.59.77 1.27 1.45 2.04 2.04.36.28.87.12 1.14-.24.7-.95 1.7-1.43 2.49-1.1.8.33 1.16 1.37.98 2.53-.07.45.18.93.64.99a11.1 11.1 0 0 0 2.88 0c.46-.06.7-.54.64-.99-.18-1.16.19-2.2.98-2.53.8-.33 1.79.14 2.49 1.1.27.36.78.52 1.14.24.77-.59 1.45-1.27 2.04-2.04.28-.36.12-.87-.24-1.14-.96-.7-1.43-1.7-1.1-2.49.33-.8 1.37-1.16 2.53-.98.45.07.93-.18.99-.64a11.1 11.1 0 0 0 0-2.88c-.06-.46-.54-.7-.99-.64-1.16.18-2.2-.19-2.53-.98-.33-.8.14-1.79 1.1-2.49.36-.27.52-.78.24-1.14a11.07 11.07 0 0 0-2.04-2.04c-.36-.28-.87-.12-1.14.24-.7.96-1.7 1.43-2.49 1.1-.8-.33-1.16-1.37-.98-2.53.07-.45-.18-.93-.64-.99a11.1 11.1 0 0 0-2.88 0ZM16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"
-									clipRule="evenodd"
-									className=""
-								></path>
-							</svg>
-						</div>
+						<SettingsIcon />
 					</div>
 				</div>
 			</div>
@@ -79,7 +50,6 @@ const MainPage = () => {
 				className="bg-discord-main-content-bg text-white flex-grow"
 			>
 				<div className="h-[48px] drop-shadow-sm border-b-[1px] border-discord-input-dark" />
-				MAIN
 				<div>User is logged in. Page under construction.</div>
 				<button
 					onClick={() => dispatch(logout())}
