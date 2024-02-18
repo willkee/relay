@@ -34,6 +34,8 @@ export default {
 				"discord-settings-item": "#3F4248",
 				"danger-btn": "#DA363C",
 				"danger-hover": "#981c20",
+				"button-gray": "#4E5058",
+				"button-gray-hover": "#7f828d",
 			},
 			// buttons , 14% black opacity hover
 			backgroundImage: {
@@ -41,6 +43,9 @@ export default {
 			},
 			animation: {
 				wiggle: "wiggle 1s ease-in-out infinite",
+			},
+			transitionTimingFunction: {
+				"custom-in": "cubic-bezier(0.4, 0, 0.2, 1)",
 			},
 		},
 		screens: {
