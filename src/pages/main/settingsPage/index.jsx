@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { hideModal, currentModal } from "../../../store/modal";
 
-import MyAccountSettings from "./MyAccount";
+import MyAccountSettings from "./account";
 import CloseIcon from "../icons/Close";
 import LogoutIcon from "../icons/Logout";
 import LogoutModal from "./LogoutModal";
@@ -53,7 +53,7 @@ const SettingsPage = () => {
 
 	return (
 		<div className="min-w-full w-screen h-screen bg-primary flex">
-			<nav className="bg-discord-sidebar-2 w-[218px] h-full min-h-screen pt-[60px] pl-5 pr-1.5 text-discord-text-300 font-ggBold text-xs">
+			<nav className="bg-discord-sidebar-2 w-[218px] min-w-[218px] h-full min-h-screen pt-[60px] pl-5 pr-1.5 text-discord-text-300 font-ggBold text-xs">
 				<div className="px-2.5 pb-1.5">USER SETTINGS</div>
 
 				<div
