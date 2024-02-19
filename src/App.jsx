@@ -20,11 +20,13 @@ function App() {
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(firebaseAuth, async (user) => {
 			if (user) {
-				const document = await getDoc(doc(db, "users", user.uid));
+				const document = await getDoc(doc(db, "users", user.uid)).catch(
+					(err) => console.error(err)
+				);
 
 				let username;
 				let displayName;
-				if (document.exists()) {
+				if (document?.exists()) {
 					username = document.data().username;
 					displayName = document.data().displayName;
 				}
