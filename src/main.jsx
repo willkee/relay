@@ -22,9 +22,11 @@ import store from "./store";
 import "./index.css";
 import { modalMount } from "./store/modal.js";
 
+import rootUrl from "./store/config.js";
+
 //eslint-disable-next-line no-undef
 if (process.env.NODE_ENV !== "production") {
-	csrfFetch("/api/v1/csrf");
+	csrfFetch(`${rootUrl}/api/v1/csrf`);
 
 	window.csrfFetch = csrfFetch;
 	window.store = store;

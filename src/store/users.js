@@ -1,5 +1,5 @@
 import { csrfFetch } from "./csrf";
-
+import rootUrl from "./config";
 // constants
 const ADDED_FRIEND = "users/ADDED_FRIEND";
 const REMOVED_FRIEND = "users/REMOVED_FRIEND";
@@ -11,7 +11,7 @@ const addedFriend = (data) => ({ type: ADDED_FRIEND, data });
 const removedFriend = (data) => ({ type: REMOVED_FRIEND, data });
 
 // thunks
-const urlPrefix = "/api/v1/users";
+const urlPrefix = `${rootUrl}/api/v1/users`;
 
 export const getFriends = () => async (dispatch) => {
 	await csrfFetch(`${urlPrefix}/friends`);
