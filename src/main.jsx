@@ -7,54 +7,28 @@ import "./assets/fonts/gg_sans/gg_sans_Normal.ttf";
 import "./assets/fonts/gg_sans/gg_sans_Normal_Italic.ttf";
 import "./assets/fonts/gg_sans/gg_sans_Semibold.ttf";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { restoreCSRF } from "./store/csrf";
 
-import { BrowserRouter } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
-
-import { csrfFetch } from "./store/csrf";
-import * as sessionActions from "./store/session";
-
-import App from "./App.jsx";
+import Root from "./Root.jsx";
+import "./index.css";
 import store from "./store";
 
-import "./index.css";
-import { modalMount } from "./store/modal.js";
+if (import.meta.env.VITE_VERCEL_ENV !== "production") restoreCSRF();
 
-import rootUrl from "./store/config.js";
-
-//eslint-disable-next-line no-undef
-if (import.meta.env.VITE_VERCEL_ENV !== "production") {
-	csrfFetch(`${rootUrl}/api/v1/csrf`);
-
-	window.csrfFetch = csrfFetch;
-	window.store = store;
-	window.sessionActions = sessionActions;
-}
-
-// eslint-disable-next-line react-refresh/only-export-components
-function Root() {
-	const dispatch = useDispatch();
-	const modalMountRef = useRef(null);
-
-	useEffect(() => {
-		dispatch(modalMount(modalMountRef.current));
-	}, [dispatch]);
-
-	return (
-		<BrowserRouter>
-			<App />
-			<div ref={modalMountRef} className="modal" />
-		</BrowserRouter>
-	);
-}
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<Root />
-		</Provider>
-	</React.StrictMode>
-);
+let container = null;
+document.addEventListener("DOMContentLoaded", () => {
+	if (!container) {
+		container = document.getElementById("root");
+		const root = ReactDOM.createRoot(container);
+		root.render(
+			<React.StrictMode>
+				<Provider store={store}>
+					<Root />
+				</Provider>
+			</React.StrictMode>
+		);
+	}
+});

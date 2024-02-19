@@ -21,3 +21,14 @@ export async function csrfFetch(url, options = {}) {
 	}
 	return await res.json();
 }
+
+export async function restoreCSRF() {
+	const res = await csrfFetch("/api/v1/csrf");
+	Cookies.set("XSRF-TOKEN", res.csrfToken, {
+		expires: 1,
+		path: "/",
+		sameSite: "lax",
+		secure: import.meta.env.VITE_VERCEL_ENV === "production",
+		httpOnly: import.meta.env.VITE_VERCEL_ENV === "production",
+	});
+}
