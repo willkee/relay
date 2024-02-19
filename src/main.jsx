@@ -25,7 +25,7 @@ import { modalMount } from "./store/modal.js";
 import rootUrl from "./store/config.js";
 
 //eslint-disable-next-line no-undef
-if (process.env.NODE_ENV !== "production") {
+if (import.meta.env.VITE_VERCEL_ENV !== "production") {
 	csrfFetch(`${rootUrl}/api/v1/csrf`);
 
 	window.csrfFetch = csrfFetch;

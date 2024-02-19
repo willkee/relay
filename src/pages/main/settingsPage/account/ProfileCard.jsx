@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import logo from "../../../../assets/images/logo.png";
+
 import phoenix from "../../../../assets/images/phoenix.jpg";
 import ProfileBadges from "./ProfileBadges";
 
