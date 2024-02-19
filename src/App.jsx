@@ -23,14 +23,18 @@ function App() {
 				const document = await getDoc(doc(db, "users", user.uid));
 
 				let username;
-				if (document.exists()) username = document.data().username;
+				let displayName;
+				if (document.exists()) {
+					username = document.data().username;
+					displayName = document.data().displayName;
+				}
 
 				const data = {
+					username,
+					displayName,
 					uid: user.uid,
 					email: user.email,
-					displayName: user.displayName,
 					phoneNumber: user.phoneNumber,
-					username,
 				};
 
 				dispatch(setUser(data));

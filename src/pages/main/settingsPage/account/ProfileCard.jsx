@@ -1,9 +1,17 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import logo from "../../../../assets/images/logo.png";
+import phoenix from "../../../../assets/images/phoenix.jpg";
 import ProfileBadges from "./ProfileBadges";
 
 const ProfileCard = () => {
+	const [showEmail, setShowEmail] = useState(false);
 	const { user } = useSelector((state) => state.session);
+
+	useEffect(() => {
+		return () => setShowEmail(false);
+	}, []);
 
 	const cardData = [
 		{ title: "DISPLAY NAME", data: user.displayName },
@@ -24,13 +32,10 @@ const ProfileCard = () => {
 						id="profile_avatar"
 						className="rounded-full h-[100px] w-[100px] bg-black absolute border-4 border-discord-input-dark flex items-center justify-center"
 					>
-						<img
-							className="rounded-full w-[75%] h-[75%]"
-							src={logo}
-						/>
+						<img className="rounded-full" src={phoenix} />
 						<div
 							className="absolute bottom-0 right-0 bg-green-500 rounded-full w-6 h-6 m-2 border-[5px] border-discord-input-dark"
-							style={{ transform: "translate(50%, 50%)" }}
+							style={{ transform: "translate(30%, 30%)" }}
 						/>
 					</div>
 				</div>
@@ -58,7 +63,39 @@ const ProfileCard = () => {
 								</div>
 								<div className="font-ggMedium text-discord-text-100">
 									{item.data ? (
-										item.data
+										<>
+											{item.title === "EMAIL" ? (
+												<>
+													<span>
+														{showEmail
+															? item.data
+															: `${"*".repeat(
+																	item.data.split(
+																		"@"
+																	)[0].length
+															  )}@${
+																	item.data.split(
+																		"@"
+																	)[1]
+															  }`}
+													</span>
+													<span
+														className="text-discord-link-text text-sm ml-1 cursor-pointer hover:underline"
+														onClick={() =>
+															setShowEmail(
+																!showEmail
+															)
+														}
+													>
+														{showEmail
+															? "Hide"
+															: "Reveal"}
+													</span>
+												</>
+											) : (
+												<span>{item.data}</span>
+											)}
+										</>
 									) : (
 										<span className="text-discord-100">
 											None
