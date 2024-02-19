@@ -9,6 +9,9 @@ import {
 } from "../../Firebase";
 import Cookies from "js-cookie";
 
+import rootUrl from "./config";
+const urlPrefix = `${rootUrl}/api/v1/auth`;
+
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
@@ -48,7 +51,7 @@ export const login = (emailInput, password) => async (dispatch) => {
 export const signUp = (input) => async (dispatch) => {
 	const { email, displayName, username, password, dob, recaptcha } = input;
 
-	const res = await csrfFetch("/api/v1/auth/register", {
+	const res = await csrfFetch(`${urlPrefix}/register`, {
 		method: "POST",
 		body: JSON.stringify({
 			email,
