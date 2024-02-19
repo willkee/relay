@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { hideModal, currentModal } from "../../../store/modal";
 
 import MyAccountSettings from "./account";
@@ -21,9 +21,6 @@ const SettingsPage = () => {
 	const [active, setActive] = useState(_default);
 	const [showLogoutPrompt, setShowLogoutPrompt] = useState(false);
 	const dispatch = useDispatch();
-
-	const { user } = useSelector((state) => state.session);
-	console.log(user, "user");
 
 	const escFunction = useCallback((event) => {
 		if (event.key === "Escape") closeSettings();
