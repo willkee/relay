@@ -10,7 +10,7 @@ function ConfirmationPrompt({ heading, msg }) {
 	};
 
 	return (
-		<div className="bg-primary mobile:w-full sm:w-[480px] text-white sm:rounded-md sm:shadow-md ">
+		<div className="bg-primary mobile:w-full sm:w-480 text-white sm:rounded-md sm:shadow-md ">
 			<div className="p-8 mobile:w-full">
 				<section className="flex justify-center items-center flex-col">
 					<div className="font-ggBold text-xl text-discord-text-100">

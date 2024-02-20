@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+
+import { motion } from "framer-motion";
 import header from "../../../assets/images/header.svg";
 import FormLabel from "../../../components/FormLabel";
 import { login } from "../../../store/session";
@@ -65,7 +67,12 @@ const SignIn = () => {
 	};
 
 	return (
-		<div className="bg-primary mobile:w-full sm:w-[480px] text-white sm:rounded-md sm:shadow-md">
+		<motion.div
+			exit={{ opacity: 0, y: -50 }}
+			initial={{ opacity: 0, y: -50 }}
+			animate={{ opacity: 1, y: 0 }}
+			className="bg-primary mobile:w-full sm:w-480 text-white sm:rounded-md sm:shadow-md"
+		>
 			<header className="flex justify-center items-center sm:hidden">
 				<img
 					src={header}
@@ -93,7 +100,7 @@ const SignIn = () => {
 					<FormLabel name="EMAIL" required />
 					<input
 						type="text"
-						className="bg-discord-input-dark p-2.5 outline-none text-base h-[40px] outline-none"
+						className="bg-discord-input-dark p-2.5 outline-none text-base h-10 outline-none"
 						value={email}
 						onChange={(e) => {
 							setErrors((prev) => ({ ...prev, email: "" }));
@@ -110,7 +117,7 @@ const SignIn = () => {
 					<input
 						type="password"
 						autoComplete="off"
-						className="bg-discord-input-dark p-2.5 outline-none text-base h-[40px]"
+						className="bg-discord-input-dark p-2.5 outline-none text-base h-10"
 						value={password}
 						onChange={(e) => {
 							setErrors((prev) => ({ ...prev, pw: "" }));
@@ -144,7 +151,7 @@ const SignIn = () => {
 					</span>
 				</div>
 			</form>
-		</div>
+		</motion.div>
 	);
 };
 

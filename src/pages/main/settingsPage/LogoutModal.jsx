@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../../../store/session";
 import { currentModal, hideModal } from "../../../store/modal";
 
+import { motion } from "framer-motion";
 const LogoutModal = ({ hideLogoutModal }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -16,17 +17,20 @@ const LogoutModal = ({ hideLogoutModal }) => {
 	};
 
 	const btn =
-		"w-[96px] h-[38px] flex items-center justify-center font-ggBold cursor-pointer text-sm rounded";
+		"w-24 h-[38px] flex items-center justify-center font-ggBold cursor-pointer text-sm rounded";
 	return (
-		<div
-			className="fixed text-white top-0 bottom-0 left-0 right-0 flex items-center justify-center backdrop-blur-sm bg-black opacity-80"
+		<motion.div
+			exit={{ opacity: 0, y: -50 }}
+			initial={{ opacity: 0, y: -50 }}
+			animate={{ opacity: 1, y: 0 }}
+			className="fixed text-white top-0 bottom-0 left-0 right-0 flex items-center justify-center backdrop-blur-sm bg-black bg-opacity-70"
 			onClick={hideLogoutModal}
 		>
 			<div
 				className="bg-primary w-[440px] rounded"
 				onClick={(e) => e.stopPropagation()}
 			>
-				<h1 className="p-4 font-ggBold text-xl h-[56px]">Log Out</h1>
+				<h1 className="p-4 font-ggBold text-xl h-14">Log Out</h1>
 				<p className="h-[74px] pb-5 px-4 text-discord-text-100 text-base font-ggMedium">
 					Are you sure you want to logout?
 				</p>
@@ -45,7 +49,7 @@ const LogoutModal = ({ hideLogoutModal }) => {
 					</div>
 				</section>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

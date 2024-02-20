@@ -7,6 +7,9 @@ export default {
 	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		extend: {
+			width: {
+				480: "480px",
+			},
 			fontFamily: {
 				sans: ["GGRegular"],
 				ggBold: ["GGBold"],
