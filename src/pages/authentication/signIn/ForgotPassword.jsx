@@ -60,7 +60,7 @@ function ForgotPassword() {
 	};
 
 	return (
-		<div className="bg-primary mobile:w-full sm:w-[480px] text-white sm:rounded-md sm:shadow-md ">
+		<div className="bg-primary mobile:w-full sm:w-480 text-white sm:rounded-md sm:shadow-md ">
 			<form onSubmit={handleSubmit} className="p-8 mobile:w-full">
 				<section className="flex justify-center items-center flex-col">
 					<h1 className="font-ggBold text-2xl text-discord-text-100">
@@ -71,7 +71,7 @@ function ForgotPassword() {
 					<FormLabel name="EMAIL" required />
 					<input
 						type="text"
-						className="font-ggMedium bg-discord-input-dark p-2.5 outline-none text-base h-[40px] outline-none"
+						className="font-ggMedium bg-discord-input-dark p-2.5 outline-none text-base h-10 outline-none"
 						value={formData.email}
 						onChange={(e) => {
 							setFormData((prev) => ({

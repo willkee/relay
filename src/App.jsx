@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { firebaseAuth, onAuthStateChanged, doc, db, getDoc } from "../Firebase";
 import { removeUser, setUser } from "./store/session";
 
@@ -50,33 +51,48 @@ function App() {
 	}, [dispatch]);
 
 	return (
-		<>
-			<Modal />
-			{!isLoaded ? (
-				<div className="bg-gradient-to-b from-primary to-discord-input-dark w-screen h-full min-w-screen min-h-screen flex flex-col justify-center items-center">
-					<img
-						className="w-20 h-20 animate-pulse"
-						src={icon}
-						alt="Relay logo"
-					/>
-					<div className="text-discord-text-200 font-ggBold mt-4 text-lg animate-pulse duration-300">
-						Loading...
+		<AnimatePresence>
+			<>
+				<Modal />
+				{!isLoaded ? (
+					<div className="bg-gradient-to-b from-primary to-discord-input-dark w-screen h-full min-w-screen min-h-screen flex flex-col justify-center items-center">
+						<motion.img
+							initial={{ opacity: 0, scale: 0.5 }}
+							animate={{ opacity: 1, scale: 1 }}
+							transition={{
+								duration: 0.3,
+								ease: [0, 0.71, 0.2, 1.01],
+								scale: {
+									type: "spring",
+									damping: 5,
+									stiffness: 10,
+								},
+							}}
+							className="w-20 h-20 animate-pulse"
+							src={icon}
+							alt="Relay logo"
+						/>
+						<div className="text-discord-text-200 font-ggBold mt-4 text-lg animate-pulse duration-300">
+							Loading...
+						</div>
 					</div>
-				</div>
-			) : (
-				<Routes>
-					<Route
-						exact
-						path="/"
-						element={user ? <MainPage /> : <Navigate to="/login" />}
-					/>
-					<Route
-						path="*"
-						element={<Authentication active={!!user} />}
-					/>
-				</Routes>
-			)}
-		</>
+				) : (
+					<Routes>
+						<Route
+							exact
+							path="/"
+							element={
+								user ? <MainPage /> : <Navigate to="/login" />
+							}
+						/>
+						<Route
+							path="*"
+							element={<Authentication active={!!user} />}
+						/>
+					</Routes>
+				)}
+			</>
+		</AnimatePresence>
 	);
 }
 

@@ -39,14 +39,14 @@ const ProfileCard = () => {
 						/>
 					</div>
 				</div>
-				<div className="ml-[134px] mt-[36px] h-[60px] pr-[16px] flex justify-between">
+				<div className="ml-[134px] mt-9 h-[60px] pr-4 flex justify-between">
 					<div className="flex flex-col">
 						<div className="text-white text-xl font-ggBold h-[30px]">
 							{user.displayName}
 						</div>
 						<ProfileBadges />
 					</div>
-					<div className="bg-discord-button h-[32px] font-ggMedium text-white py-0.5 px-4 rounded-sm text-sm flex items-center cursor-pointer hover:bg-discord-button-hover">
+					<div className="bg-discord-button h-8 font-ggMedium text-white py-0.5 px-4 rounded-sm text-sm flex items-center cursor-pointer hover:bg-discord-button-hover">
 						Edit User Profile
 					</div>
 				</div>
@@ -55,7 +55,7 @@ const ProfileCard = () => {
 					{cardData.map((item) => (
 						<div
 							key={item.title}
-							className="h-[40px] mb-6 flex items-center justify-between"
+							className="h-10 mb-6 flex items-center justify-between"
 						>
 							<div className="h-full flex flex-col justify-between">
 								<div className="text-xs font-ggBold text-discord-text-200">
@@ -105,7 +105,7 @@ const ProfileCard = () => {
 							</div>
 							<div
 								type="button"
-								className="h-[32px] w-[60px] bg-button-gray rounded flex items-center justify-center text-discord-text-100 font-ggMedium text-sm cursor-pointer hover:bg-button-gray-hover transition duration-100 ease-in-out"
+								className="h-8 w-[60px] bg-button-gray rounded flex items-center justify-center text-discord-text-100 font-ggMedium text-sm cursor-pointer hover:bg-button-gray-hover transition duration-100 ease-in-out"
 							>
 								Edit
 							</div>
