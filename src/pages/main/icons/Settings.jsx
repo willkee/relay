@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { currentModal, showModal } from "../../../store/modal";
+import { motion } from "framer-motion";
 
 import SettingsPage from "../settingsPage";
 const SettingsIcon = () => {
@@ -11,9 +12,10 @@ const SettingsIcon = () => {
 	};
 
 	return (
-		<div
+		<motion.div
 			className="text-discord-text-200 hover:text-discord-text-100 cursor-pointer"
 			onClick={openSettings}
+			whileHover={{ rotate: 25 }}
 		>
 			<svg
 				role="img"
@@ -30,7 +32,7 @@ const SettingsIcon = () => {
 					clipRule="evenodd"
 				></path>
 			</svg>
-		</div>
+		</motion.div>
 	);
 };
 
