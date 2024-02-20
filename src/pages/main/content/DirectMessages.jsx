@@ -17,6 +17,9 @@ const Channels = () => (
 	<>
 		<ListCard icon={<FriendsIcon />} text="Friends" />
 		<ListCard icon={<ShopIcon />} text="Shop" />
+		<div className="text-xs text-discord-text-300 font-ggBold pt-5 pl-[18px] flex justify-start items-start w-full">
+			DIRECT MESSAGES
+		</div>
 	</>
 );
 
