@@ -53,7 +53,7 @@ export const signUp = (input) => async (dispatch) => {
 
 	const res = await csrfFetch(`${urlPrefix}/register`, {
 		method: "POST",
-		body: JSON.stringify({
+		data: JSON.stringify({
 			email,
 			displayName,
 			username,
