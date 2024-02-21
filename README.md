@@ -40,7 +40,9 @@ Relay is a Discord Clone built with React and Redux. It is a real-time chat appl
 
 </p>
 
--   [&nbsp;&nbsp;&nbsp;] Research pop-out transition between sign in and sign up forms.
+-   [&check;] Research pop-out transition between sign in and sign up forms.
+-   [&check;] Implement basic structure of the UI for main servers page.
+-   [&check;] Clone profile card of Discord into Relay.
 -   [&nbsp;&nbsp;&nbsp;] Learn the use of web sockets for real-time chat communication (socket.io library)
 
 <h3>Backend/Authentication</h3>
