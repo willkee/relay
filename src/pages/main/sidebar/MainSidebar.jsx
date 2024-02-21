@@ -3,13 +3,7 @@ import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import logo from "../../../assets/images/logo.png";
 
-import {
-	firebaseAuth,
-	onAuthStateChanged,
-	doc,
-	db,
-	getDoc,
-} from "../../../../Firebase";
+import { doc, db, getDoc } from "../../../../Firebase";
 
 const MainSidebar = () => {
 	const { user } = useSelector((state) => state.session);
