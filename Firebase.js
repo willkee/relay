@@ -7,7 +7,15 @@ import {
 	signOut,
 } from "firebase/auth";
 import "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import {
+	getFirestore,
+	doc,
+	getDoc,
+	getDocs,
+	collection,
+	query,
+	where,
+} from "firebase/firestore";
 import "firebase/firestore";
 
 const firebaseConfig = {
@@ -33,5 +41,9 @@ export {
 	signOut,
 	doc,
 	getDoc,
+	getDocs,
+	collection,
+	query,
 	db,
+	where,
 };

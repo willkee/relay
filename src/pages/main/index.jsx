@@ -21,7 +21,7 @@ const MainPage = () => {
 
 	return (
 		<div className={tw.container}>
-			<MainSidebar />
+			<MainSidebar active={activeContent} setActive={setActiveContent} />
 			<div className="w-60 bg-discord-sidebar-2">
 				<div className={tw.sb2}>
 					<DirectMessages.Header />
