@@ -1,17 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import ProfileFooter from "../footer/ProfileFooter";
 
-import MainSidebar from "./sidebar/MainSidebar";
-import ProfileFooter from "./footer/ProfileFooter";
+const ServerContent = ({ activeServer }) => {
+	const [currentServer, setCurrentServer] = useState(null);
 
-import DirectMessages from "./content/DirectMessages";
-import ServerContent from "./content/ServerContent";
-
-const MainPage = () => {
-	const [activeContent, setActiveContent] = useState("messages");
-
+	const servers = useSelector((state) => state.servers);
 	useEffect(() => {
-		return () => setActiveContent("DM");
-	}, []);
+		setCurrentServer(servers[activeServer]);
+	}, [activeServer, servers]);
 
 	const tw = {
 		container: "flex h-screen w-screen overflow-hidden",
@@ -19,19 +16,17 @@ const MainPage = () => {
 		chat: "bg-discord-main-content-bg text-white flex-grow",
 		channelHeader: "h-12 drop-shadow-sm border-b border-discord-input-dark",
 	};
-
 	return (
-		<div className={tw.container}>
-			<MainSidebar active={activeContent} setActive={setActiveContent} />
-			{activeContent === "DM" ? (
+		<>
+			{currentServer ? (
 				<>
 					<div className="w-60 bg-discord-sidebar-2">
 						<div className={tw.sb2}>
-							<DirectMessages.Header />
+							{/* <DirectMessages.Header /> */}
 						</div>
 						<div className="flex flex-col h-full items-center">
 							<div className="w-full h-[calc(100%-100px)] flex flex-col items-center pt-2">
-								<DirectMessages.Channels />
+								{/* <DirectMessages.Channels /> */}
 							</div>
 							<ProfileFooter />
 						</div>
@@ -41,10 +36,10 @@ const MainPage = () => {
 					</div>
 				</>
 			) : (
-				<ServerContent activeServer={activeContent} />
+				<div>Loading...</div>
 			)}
-		</div>
+		</>
 	);
 };
 
-export default MainPage;
+export default ServerContent;

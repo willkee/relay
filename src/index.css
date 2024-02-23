@@ -32,6 +32,10 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 a {
 	font-weight: 500;
 	color: "#00A8FC";
@@ -43,6 +47,7 @@ a:hover {
 
 body {
 	margin: 0;
+	padding: 0;
 	display: flex;
 	place-items: center;
 	min-width: 320px;
